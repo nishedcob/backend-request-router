@@ -1,0 +1,25 @@
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mock-svc
+  namespace: mock-svc
+spec:
+  selector:
+    matchLabels:
+      app: argon
+  template:
+    metadata:
+      labels:
+        app: argon
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mock-svc
+  namespace: mock-svc
+spec:
+  selector:
+    app: argon

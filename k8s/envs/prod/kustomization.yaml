@@ -1,0 +1,30 @@
+
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+  - ../../env
+transformers:
+  - transformers.yaml
+patches:
+  - target:
+      kind: Namespace
+      name: argon
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: prod-argon
+  - target:
+      kind: Namespace
+      name: helium
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: prod-helium
+  - target:
+      kind: Namespace
+      name: neon
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: prod-neon

@@ -1,0 +1,25 @@
+
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+  - ../../mock_svc
+patches:
+  - target:
+      kind: .*
+      name: mock-svc
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: argon
+      - op: replace
+        path: /metadata/namespace
+        value: argon
+  - target:
+      kind: Namespace
+      name: mock-svc
+    patch: |-
+      - op: remove
+        path: /metadata/namespace
+patchesStrategicMerge:
+  - patch.yaml
