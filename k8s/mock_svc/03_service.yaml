@@ -1,0 +1,20 @@
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: mock-svc
+  namespace: mock-svc
+spec:
+  selector:
+    app: mock-svc
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 9898
+      protocol: TCP
+      targetPort: http
+    - port: 9999
+      targetPort: grpc
+      protocol: TCP
+      name: grpc

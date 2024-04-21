@@ -1,0 +1,28 @@
+
+---
+apiVersion: builtin
+kind: PrefixSuffixTransformer
+metadata:
+  name: ProdPrefixer
+prefix: "prod-"
+fieldSpecs:
+  - path: metadata/name
+  - path: metadata/namespace
+
+---
+apiVersion: builtin
+kind: LabelTransformer
+metadata:
+  name: EnvLabeler
+labels:
+  env: prod
+fieldSpecs:
+- kind: Deployment
+  path: spec/selector/matchLabels
+  create: true
+- kind: Deployment
+  path: spec/template/metadata/labels
+  create: true
+- kind: Service
+  path: spec/selector
+  create: true

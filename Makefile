@@ -26,3 +26,10 @@ bootstrap_mK8s:
 		echo "Installing '$${line}' ..." ; \
 		cd mK8s ; $(MAKE) $$line ; \
 	done < <(jq -r '.plugins[]' .universal-minikube)
+
+## bootstrap_mock_apps | bootstrap mock applications
+bootstrap_mock_apps: SHELL=/bin/bash
+bootstrap_mock_apps:
+	kubectl apply -k k8s/envs/dev
+	kubectl apply -k k8s/envs/stg
+	kubectl apply -k k8s/envs/prod
