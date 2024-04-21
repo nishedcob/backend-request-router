@@ -1,0 +1,3 @@
+[submodule "mK8s"]
+	path = mK8s
+	url = git@github.com:nishedcob/universal-minikube.git
