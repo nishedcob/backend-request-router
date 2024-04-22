@@ -1,0 +1,60 @@
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-rules
+  namespace: dev-argon
+data:
+  rules: |
+    - path:
+        origin:
+          prefix: backend
+          environment: dev
+          service: argon
+        destination:
+          service: dev-argon
+          namespace: dev-argon
+          port: 9898
+        rewrite:
+          origin: yes
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-rules
+  namespace: dev-helium
+data:
+  rules: |
+    - path:
+        origin:
+          prefix: backend
+          environment: dev
+          service: helium
+        destination:
+          service: dev-helium
+          namespace: dev-helium
+          port: 9898
+        rewrite:
+          origin: yes
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-rules
+  namespace: dev-neon
+data:
+  rules: |
+    - path:
+        origin:
+          prefix: backend
+          environment: dev
+          service: neon
+        destination:
+          service: dev-neon
+          namespace: dev-neon
+          port: 9898
+        rewrite:
+          origin: yes

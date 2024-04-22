@@ -1,0 +1,41 @@
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: backend-request-router
+  namespace: backend-request-router
+  labels:
+    app: backend-request-router
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-request-router
+  template:
+    metadata:
+      labels:
+        app: backend-request-router
+    spec:
+      containers:
+      - name: proxy
+        image: registry:5000/backend-request-router:latest
+        imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 8000
+          protocol: TCP
+        command:
+        - uvicorn
+        - app:app
+        - --host
+        - '0.0.0.0'
+        - --port
+        - '8000'
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 512Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi

@@ -1,0 +1,60 @@
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-rules
+  namespace: stg-argon
+data:
+  rules: |
+    - path:
+        origin:
+          prefix: backend
+          environment: stg
+          service: argon
+        destination:
+          service: stg-argon
+          namespace: stg-argon
+          port: 9898
+        rewrite:
+          origin: yes
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-rules
+  namespace: stg-helium
+data:
+  rules: |
+    - path:
+        origin:
+          prefix: backend
+          environment: stg
+          service: helium
+        destination:
+          service: stg-helium
+          namespace: stg-helium
+          port: 9898
+        rewrite:
+          origin: yes
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-rules
+  namespace: stg-neon
+data:
+  rules: |
+    - path:
+        origin:
+          prefix: backend
+          environment: stg
+          service: neon
+        destination:
+          service: stg-neon
+          namespace: stg-neon
+          port: 9898
+        rewrite:
+          origin: yes
