@@ -1,0 +1,60 @@
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-rules
+  namespace: prod-argon
+data:
+  rules: |
+    - path:
+        origin:
+          prefix: backend
+          environment: prod
+          service: argon
+        destination:
+          service: prod-argon
+          namespace: prod-argon
+          port: 9898
+        rewrite:
+          origin: yes
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-rules
+  namespace: prod-helium
+data:
+  rules: |
+    - path:
+        origin:
+          prefix: backend
+          environment: prod
+          service: helium
+        destination:
+          service: prod-helium
+          namespace: prod-helium
+          port: 9898
+        rewrite:
+          origin: yes
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-rules
+  namespace: prod-neon
+data:
+  rules: |
+    - path:
+        origin:
+          prefix: backend
+          environment: prod
+          service: neon
+        destination:
+          service: prod-neon
+          namespace: prod-neon
+          port: 9898
+        rewrite:
+          origin: yes
